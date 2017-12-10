@@ -1,7 +1,7 @@
 defmodule GofishWeb.Endpoint do
   use Phoenix.Endpoint, otp_app: :gofish
 
-  socket "/socket", GofishWeb.UserSocket
+  socket "/socket", GofishWeb.PlayerSocket
 
   # Serve at "/" the static files from "priv/static" directory.
   #

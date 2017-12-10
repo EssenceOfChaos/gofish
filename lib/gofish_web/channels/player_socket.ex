@@ -1,4 +1,4 @@
-defmodule GofishWeb.UserSocket do
+defmodule GofishWeb.PlayerSocket do
   use Phoenix.Socket
 
   ## Channels
