@@ -21,7 +21,8 @@
 
 <div class="col-lg-6">
 <p>
-<%= link "PLayer rankings", to: player_path(@conn, :index) %>  
+<%= link "Player rankings", to: player_path(@conn, :index) %>
 </p>
+<%= link "poop", to: session_path(@conn, :new), class: "btn btn-outline-primary" %>
 
 </div>

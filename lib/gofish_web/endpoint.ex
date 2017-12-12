@@ -1,5 +1,6 @@
 defmodule GofishWeb.Endpoint do
   use Phoenix.Endpoint, otp_app: :gofish
+  use ExDebugToolbar.Phoenix
 
   socket "/socket", GofishWeb.PlayerSocket
 

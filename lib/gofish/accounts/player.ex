@@ -34,13 +34,11 @@ defmodule Gofish.Accounts.Player do
   end
 
 
-
-
   defp downcase_email(changeset) do
     update_change(changeset, :email, &String.downcase/1)
   end
 
-  defp encrypt_password(changeset) do
+  defp encrypt_password(changeset) do 
     password = get_change(changeset, :password)
 
     if password do

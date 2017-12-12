@@ -7,7 +7,7 @@ defmodule GofishWeb.Router do
     plug :fetch_flash
     plug :protect_from_forgery
     plug :put_secure_browser_headers
-    plug Gofish.Plugs.CurrentPlayer, repo: Gofish.Repo
+
   end
 
   pipeline :api do
@@ -16,13 +16,16 @@ defmodule GofishWeb.Router do
 
   scope "/", GofishWeb do
     pipe_through :browser # Use the default browser stack
+    get "/", PageController, :index
+    resources "/players", PlayerController
     ## Routes for sessions ##
   get    "/login",  SessionController, :new
   post   "/login",  SessionController, :create
   delete "/logout", SessionController, :delete
-    resources "/players", PlayerController
 
-    get "/", PageController, :index
+
+
+
   end
 
   # Other scopes may use custom stacks.

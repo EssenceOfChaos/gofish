@@ -3,7 +3,7 @@
 <table class="table">
   <thead class="thead-dark">
     <tr>
-      <th >Username</th>
+      <th scope="col">Username</th>
       <th >Email</th>
       <th >Rank</th>
       <th class="text-center">Actions</th>

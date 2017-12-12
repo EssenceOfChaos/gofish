@@ -1,5 +1,10 @@
 use Mix.Config
 
+## Configure Ex_Debug Toolbar
+config :ex_debug_toolbar,
+  enable: true,
+  debug: true
+
 # For development, we disable any cache and enable
 # debugging and code reloading.
 #
@@ -9,6 +14,7 @@ use Mix.Config
 config :gofish, GofishWeb.Endpoint,
   http: [port: 4000],
   debug_errors: true,
+  instrumenters: [ExDebugToolbar.Collector.InstrumentationCollector],
   code_reloader: true,
   check_origin: false,
   watchers: [node: ["node_modules/brunch/bin/brunch", "watch", "--stdin",
@@ -48,9 +54,15 @@ config :logger, :console, format: "[$level] $message\n"
 # in production as building large stacktraces may be expensive.
 config :phoenix, :stacktrace_depth, 20
 
+## Configure Ex_Debug Toolbar
+config :phoenix, :template_engines,
+  eex: ExDebugToolbar.Template.EExEngine,
+  exs: ExDebugToolbar.Template.ExsEngine
+
 # Configure your database
 config :gofish, Gofish.Repo,
   adapter: Ecto.Adapters.Postgres,
+  loggers: [ExDebugToolbar.Collector.EctoCollector, Ecto.LogEntry],
   username: "postgres",
   password: "postgres",
   database: "gofish_dev",

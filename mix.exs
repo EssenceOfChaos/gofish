@@ -16,7 +16,7 @@ defmodule Gofish.Mixfile do
       source_url: "https://github.com/EssenceOfChaos/gofish",
       homepage_url: "https://gofish-elixir.herokuapp.com",
       docs: [main: "Gofish", # The main page in the docs
-            logo: "assets/static/images/logo.png",
+            logo: "assets/static/images/gofishgame.jpg",
             extras: ["README.md"]]
     ]
   end
@@ -27,7 +27,7 @@ defmodule Gofish.Mixfile do
   def application do
     [
       mod: {Gofish.Application, []},
-      extra_applications: [:logger, :runtime_tools]
+      extra_applications: [:ex_debug_toolbar, :logger, :runtime_tools]
     ]
   end
 
@@ -52,7 +52,9 @@ defmodule Gofish.Mixfile do
       {:comeonin, "~> 4.0"},
       {:argon2_elixir, "~> 1.2"},
       {:ex_machina, "~> 2.1", only: :test},
-      {:ex_doc, "~> 0.16", only: :dev, runtime: false}
+      {:ex_doc, "~> 0.16", only: :dev, runtime: false},
+      {:ex_debug_toolbar, "~> 0.4.0"}
+
     ]
   end
 
@@ -66,7 +68,8 @@ defmodule Gofish.Mixfile do
     [
       "ecto.setup": ["ecto.create", "ecto.migrate", "run priv/repo/seeds.exs"],
       "ecto.reset": ["ecto.drop", "ecto.setup"],
-      "test": ["ecto.create --quiet", "ecto.migrate", "test"]
+      "test": ["ecto.create --quiet", "ecto.migrate", "test"],
+      "ecto.migrate": ["ecto.migrate", "ecto.dump"]
     ]
   end
 end

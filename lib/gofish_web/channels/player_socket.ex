@@ -3,6 +3,7 @@ defmodule GofishWeb.PlayerSocket do
 
   ## Channels
   # channel "room:*", GofishWeb.RoomChannel
+  channel "lobby:lobby", GofishWeb.LobbyChannel
 
   ## Transports
   transport :websocket, Phoenix.Transports.WebSocket,

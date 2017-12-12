@@ -11,7 +11,6 @@ defmodule GofishWeb.SessionController do
     render conn, "new.html"
   end
 
-
   def create(conn, session_params) do
     case Auth.login(session_params, Repo) do
       {:ok, player} ->

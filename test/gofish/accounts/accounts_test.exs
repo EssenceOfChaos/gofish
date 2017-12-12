@@ -6,8 +6,8 @@ defmodule Gofish.AccountsTest do
   describe "players" do
     alias Gofish.Accounts.Player
 
-    @valid_attrs %{email: "some email", password_hash: "some password_hash", rank: 42, username: "some username"}
-    @update_attrs %{email: "some updated email", password_hash: "some updated password_hash", rank: 43, username: "some updated username"}
+    @valid_attrs %{email: "batman@example.com", password_hash: "ASDLKFJAOIEAO394873948", rank: 42, username: "cooldude17"}
+    @update_attrs %{email: "batman2@example.com", password_hash: "7dkj3gJAOIEAO394873948", rank: 43, username: "cooldude18"}
     @invalid_attrs %{email: nil, password_hash: nil, rank: nil, username: nil}
 
     def player_fixture(attrs \\ %{}) do
