@@ -2,8 +2,8 @@ use Mix.Config
 
 ## Configure Ex_Debug Toolbar
 config :ex_debug_toolbar,
-  enable: true,
-  debug: true
+  enable: true
+  # debug: true
 
 # For development, we disable any cache and enable
 # debugging and code reloading.

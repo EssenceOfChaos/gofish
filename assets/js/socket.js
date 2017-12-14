@@ -74,15 +74,15 @@ channel.on("new_msg", payload => {
 });
 
 // WORKING WITH PHOENIX PRESENCE MODULE //
-channel.on("presence_state", state => {
-    presences = Presence.syncState(presences, state);
-    renderOnlineUsers(presences);
-});
+// channel.on("presence_state", state => {
+//     presences = Presence.syncState(presences, state);
+//     renderOnlineUsers(presences);
+// });
 
-channel.on("presence_diff", diff => {
-    presences = Presence.syncDiff(presences, diff);
-    renderOnlineUsers(presences);
-});
+// channel.on("presence_diff", diff => {
+//     presences = Presence.syncDiff(presences, diff);
+//     renderOnlineUsers(presences);
+// });
 // WORKING WITH PHOENIX PRESENCE MODULE //
 
 channel

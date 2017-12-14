@@ -1,16 +1,22 @@
-<div class="jumbotron">
+<div class="jumbotron" id="page-header">
 
-  <h2 class="animated zoomIn">Welcome to Go Fish!</h2>
-  <p class="lead">Play with friends online <br />or against the computer in arcade mode</p>
+  <h1 class="animated zoomIn">Welcome to Go Fish!</h1>
+  <br>
+  <h5>Play with friends online <br />or against the computer in arcade mode</h5>
+  <br>
+  <br>
 </div>
 
 <div class="row">
   <div class="col-md-6">
+  <i class="fa fa-comments fa-5x" aria-hidden="true"></i>
 <div id="messages"></div>
 <input id="chat-input" type="text"></input>
 
   
   </div>
 
-  <div class="col-md-6"></div>
+  <div class="col-md-6">
+
+  </div>
 </div>
