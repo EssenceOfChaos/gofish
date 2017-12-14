@@ -7,7 +7,7 @@
 
   <div class="form-group">
     <%= label f, :username, class: "control-label" %>
-    <%= text_input f, :username, class: "form-control" %>
+    <%= text_input f, :username, class: "form-control", autofocus: "on" %>
     <%= error_tag f, :username %>
   </div>
 

@@ -1,3 +1,3 @@
-defmodule Gofish.SessionView do
+defmodule GofishWeb.SessionView do
   use GofishWeb, :view
 end

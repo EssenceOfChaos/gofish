@@ -12,6 +12,7 @@ defmodule Gofish.Application do
       supervisor(Gofish.Repo, []),
       # Start the endpoint when the application starts
       supervisor(GofishWeb.Endpoint, []),
+      supervisor(GofishWeb.Presence, []),
       # Start your own worker by calling: Gofish.Worker.start_link(arg1, arg2, arg3)
       # worker(Gofish.Worker, [arg1, arg2, arg3]),
     ]

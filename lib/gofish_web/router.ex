@@ -17,6 +17,9 @@ defmodule GofishWeb.Router do
   scope "/", GofishWeb do
     pipe_through :browser # Use the default browser stack
     get "/", PageController, :index
+    get "/rules", PageController, :rules
+    get "/info", PageController, :info
+    
     resources "/players", PlayerController
     ## Routes for sessions ##
   get    "/login",  SessionController, :new

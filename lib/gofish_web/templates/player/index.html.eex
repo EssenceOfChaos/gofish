@@ -29,4 +29,4 @@
   </tbody>
 </table>
 
-<span><%= link "New Player", to: player_path(@conn, :new) %></span>
+<span><%= link "New Player", to: player_path(@conn, :new), class: "btn btn-primary" %></span>
