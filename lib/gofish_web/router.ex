@@ -7,7 +7,7 @@ defmodule GofishWeb.Router do
     plug :fetch_flash
     plug :protect_from_forgery
     plug :put_secure_browser_headers
-
+    plug Gofish.Plugs.CurrentPlayer, repo: Gofish.Repo
   end
 
   pipeline :api do
@@ -25,11 +25,18 @@ defmodule GofishWeb.Router do
   get    "/login",  SessionController, :new
   post   "/login",  SessionController, :create
   delete "/logout", SessionController, :delete
-
-
-
-
   end
+
+
+  defp put_player_token(conn, _) do
+    if current_player = conn.assigns[:current_player] do
+      token = Phoenix.Token.sign(conn, "player socket", current_player.id)
+      assign(conn, :player_token, token)
+    else
+     conn
+    end
+  end
+
 
   # Other scopes may use custom stacks.
   # scope "/api", GofishWeb do

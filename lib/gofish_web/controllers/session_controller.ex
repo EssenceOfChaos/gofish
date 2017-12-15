@@ -1,6 +1,5 @@
 defmodule GofishWeb.SessionController do
   use GofishWeb, :controller
-
   alias Gofish.Accounts.Auth
   alias Gofish.Repo
 
@@ -15,7 +14,8 @@ defmodule GofishWeb.SessionController do
     case Auth.login(session_params, Repo) do
       {:ok, player} ->
         conn
-        |> put_session(:current_player, player.id)
+        |> assign(:current_player, player)
+        |> put_session(:player_id, player.id)
         |> put_flash(:info, "Logged in")
         |> redirect(to: "/")
       :error ->
@@ -31,6 +31,14 @@ defmodule GofishWeb.SessionController do
     |> put_flash(:info, "Logged out")
     |> redirect(to: "/")
   end
+
+  # defp put_current_player(conn, player) do
+  #   token = Phoenix.Token.sign(conn, "player socket", player.id)
+  #   conn
+  #   |> assign(:current_player, player)
+  #   |> put_session(:player_id, player.id)
+  #   |> assign(:player_token, token)
+  # end
 
 
 end

@@ -1,29 +1,20 @@
 defmodule GofishWeb.LobbyChannel do
   use GofishWeb, :channel
   alias GofishWeb.Presence
+  alias Gofish.Repo
 
 
-  # def join("lobby:lobby", _params, socket) do
-  # send(self(), :after_join)
-  # {:ok, socket}
-  # end
-
-  # def handle_info(:after_join, socket) do
-  #   push socket, "presence_state", Presence.list(socket)
-  #   {:ok, _} = Presence.track(socket, socket.assigns.player_id, %{
-  #     online_at: inspect(System.system_time(:seconds))
-  #   })
-  #   {:noreply, socket}
-  # end
+  def join("lobby:lobby", _message, socket) do
+    {:ok, socket}
+  end
 
 
-
-  def join("lobby:lobby", payload, socket) do
-    if authorized?(payload) do
-      {:ok, socket}
-    else
-      {:error, %{reason: "unauthorized"}}
-    end
+  def handle_info(:after_join, socket) do
+    push socket, "presence_state", Presence.list(socket)
+    {:ok, _} = Presence.track(socket, socket.assigns.player_id, %{
+      online_at: inspect(System.system_time(:seconds))
+    })
+    {:noreply, socket}
   end
 
   # Channels can be used in a request/response fashion
@@ -39,8 +30,15 @@ defmodule GofishWeb.LobbyChannel do
     {:noreply, socket}
   end
 
+
+  # def handle_in("new_msg", %{"body" => body}, socket) do
+  #   broadcast! socket, "new_msg", %{body: body}
+  #   {:noreply, socket}
+  # end
+
   def handle_in("new_msg", %{"body" => body}, socket) do
-    broadcast! socket, "new_msg", %{body: body}
+    player = Repo.get(Player, socket.assigns.current_player)
+    broadcast! socket, "new_msg", %{body: body, player: player.username}
     {:noreply, socket}
   end
 

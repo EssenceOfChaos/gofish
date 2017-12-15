@@ -16,7 +16,19 @@
   
   </div>
 
-  <div class="col-md-6">
 
+</div>
+<div class="row">
+
+  <div class="col-md-8">
+    <h2>Messages</h2>
+    <input type="text" id="NewMessage" placeholder="Type and press enter..." class="form-control">
+    <ul id="MessageList" class="list-unstyled"></ul>
+  </div>
+  <div  class="col-md-4">
+    <h2>Who’s Online</h2>
+    <ul id="UserList" class="list-unstyled">
+      <li>Loading online users...</li>
+    </ul>
   </div>
 </div>

@@ -40,7 +40,6 @@ defmodule Gofish.Accounts.Player do
 
   defp encrypt_password(changeset) do 
     password = get_change(changeset, :password)
-
     if password do
       encrypted_password = Encryption.hash_password(password)
       put_change(changeset, :password_hash, encrypted_password)

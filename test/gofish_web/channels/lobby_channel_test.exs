@@ -2,10 +2,14 @@ defmodule GofishWeb.LobbyChannelTest do
   use GofishWeb.ChannelCase
 
   alias GofishWeb.LobbyChannel
+  alias Gofish.Accounts.Player
+  alias Gofish.Repo
 
   setup do
+    player = Repo.insert! %Player{username: "tester"}
+    token = Phoenix.Token.sign(socket(), "player socket", player.id)
     {:ok, _, socket} =
-      socket("user_id", %{some: :assign})
+      socket("player_id", %{some: :assign})
       |> subscribe_and_join(LobbyChannel, "lobby:lobby")
 
     {:ok, socket: socket}

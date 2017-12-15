@@ -1,5 +1,6 @@
 defmodule GofishWeb.PlayerSocket do
   use Phoenix.Socket
+  alias Gofish.Accounts.Player
 
   ## Channels
   # channel "room:*", GofishWeb.RoomChannel
@@ -10,22 +11,22 @@ defmodule GofishWeb.PlayerSocket do
     timeout: 45_000
   # transport :longpoll, Phoenix.Transports.LongPoll
 
-  # Socket params are passed from the client and can
-  # be used to verify and authenticate a user. After
-  # verification, you can put default assigns into
-  # the socket that will be set for all channels, ie
-  #
-  #     {:ok, assign(socket, :user_id, verified_user_id)}
-  #
-  # To deny connection, return `:error`.
-  #
-  # See `Phoenix.Token` documentation for examples in
-  # performing token verification on connect.
   
-  def connect(_params, socket) do
-    {:ok, socket}
-  end
+  @max_age 2 * 7 * 24 * 60 * 60
 
+  def connect(%{"token" => token}, socket) do
+    case Phoenix.Token.verify(socket, "player socket", token, max_age: @max_age) do
+      {:ok, player_id} ->
+        player = Gofish.Repo.get!(Player, player_id)
+        {:ok, assign(socket, :current_player, player)}
+      {:error, _reason} ->
+        :error
+    end
+end
+
+def connect(_params, _socket), do: :error
+
+def id(socket), do: "players_socket:#{socket.assigns.current_player.id}"
   # Socket id's are topics that allow you to identify all sockets for a given user:
   #
   #     def id(socket), do: "user_socket:#{socket.assigns.user_id}"
@@ -36,5 +37,4 @@ defmodule GofishWeb.PlayerSocket do
   #     GofishWeb.Endpoint.broadcast("user_socket:#{user.id}", "disconnect", %{})
   #
   # Returning `nil` makes this socket anonymous.
-  def id(_socket), do: nil
 end

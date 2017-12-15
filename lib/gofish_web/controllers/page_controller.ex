@@ -3,6 +3,8 @@ defmodule GofishWeb.PageController do
 
   def index(conn, _params) do
     # ExDebugToolbar.pry()
+    # |> put_flash(:info, "Testing flash")
+    # |> render "index.html"
     render conn, "index.html"
   end
 

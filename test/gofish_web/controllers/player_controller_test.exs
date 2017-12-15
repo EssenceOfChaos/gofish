@@ -3,8 +3,9 @@ defmodule GofishWeb.PlayerControllerTest do
 
   alias Gofish.Accounts
 
-  @create_attrs %{email: "some email", password_hash: "some password_hash", rank: 42, username: "some username"}
-  @update_attrs %{email: "some updated email", password_hash: "some updated password_hash", rank: 43, username: "some updated username"}
+
+  @create_attrs %{email: "example@aol.com", password_hash: "ABC123", rank: 42, username: "coolnamedude"}
+  @update_attrs %{email: "example2@aol.com", password_hash: "ABC1234", rank: 43, username: "coolernameduder"}
   @invalid_attrs %{email: nil, password_hash: nil, rank: nil, username: nil}
 
   def fixture(:player) do
@@ -15,7 +16,7 @@ defmodule GofishWeb.PlayerControllerTest do
   describe "index" do
     test "lists all players", %{conn: conn} do
       conn = get conn, player_path(conn, :index)
-      assert html_response(conn, 200) =~ "Listing Players"
+      assert html_response(conn, 200) =~ "Player Rankings"
     end
   end
 
@@ -60,7 +61,7 @@ defmodule GofishWeb.PlayerControllerTest do
       assert redirected_to(conn) == player_path(conn, :show, player)
 
       conn = get conn, player_path(conn, :show, player)
-      assert html_response(conn, 200) =~ "some updated email"
+      assert html_response(conn, 200) =~ "example2@aol.com"
     end
 
     test "renders errors when data is invalid", %{conn: conn, player: player} do

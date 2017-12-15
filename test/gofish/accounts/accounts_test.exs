@@ -31,10 +31,8 @@ defmodule Gofish.AccountsTest do
 
     test "create_player/1 with valid data creates a player" do
       assert {:ok, %Player{} = player} = Accounts.create_player(@valid_attrs)
-      assert player.email == "some email"
-      assert player.password_hash == "some password_hash"
-      assert player.rank == 42
-      assert player.username == "some username"
+      assert player.email == "batman@example.com"
+      assert player.username == "cooldude17"
     end
 
     test "create_player/1 with invalid data returns error changeset" do
@@ -45,10 +43,8 @@ defmodule Gofish.AccountsTest do
       player = player_fixture()
       assert {:ok, player} = Accounts.update_player(player, @update_attrs)
       assert %Player{} = player
-      assert player.email == "some updated email"
-      assert player.password_hash == "some updated password_hash"
-      assert player.rank == 43
-      assert player.username == "some updated username"
+      assert player.email == "batman2@example.com"
+      assert player.username == "cooldude18"
     end
 
     test "update_player/2 with invalid data returns error changeset" do
