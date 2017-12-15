@@ -7,32 +7,38 @@
 
   <div class="form-group">
     <%= label f, :username, class: "control-label" %>
-    <%= text_input f, :username, class: "form-control", autofocus: "on" %>
+     <div class="input-group">
+      <span class="input-group-addon" id="basic-addon1"><i class="fa fa-user" aria-hidden="true"></i></span>
+    <%= text_input f, :username, class: "form-control", autofocus: "on", placeholder: "Username" %>
     <%= error_tag f, :username %>
+    </div>
   </div>
 
   <div class="form-group">
-    <%= label f, :email, class: "control-label" %>
-    <%= email_input f, :email, class: "form-control" %>
-    <%= error_tag f, :email %>
-  </div>
-
-  <div class="form-group">
-    <%= label f, :rank, class: "control-label" %>
-    <%= number_input f, :rank, class: "form-control" %>
-    <%= error_tag f, :rank %>
+    <label>Email</label>
+      <div class="input-group">
+      <span class="input-group-addon" id="basic-addon1"><i class="fa fa-envelope" aria-hidden="true"></i></span>
+      <%= email_input f, :email, class: "form-control", placeholder: "Email" %>
+      <%= error_tag f, :email %>
+      </div>
   </div>
 
   <div class="form-group">
     <%= label f, :password, class: "control-label" %>
-    <%= password_input f, :password, class: "form-control", autocomplete: "off" %>
+    <div class="input-group">
+      <span class="input-group-addon" id="basic-addon1"><i class="fa fa-key" aria-hidden="true"></i></span>
+    <%= password_input f, :password, class: "form-control", autocomplete: "off", placeholder: "Password" %>
     <%= error_tag f, :password %>
+    </div>
   </div>
 
   <div class="form-group">
     <%= label f, :password_confirmation, class: "control-label" %>
-    <%= password_input f, :password_confirmation, class: "form-control", autocomplete: "off" %>
+    <div class="input-group">
+    <span class="input-group-addon" id="basic-addon1"><i class="fa fa-key" aria-hidden="true"></i></span>
+    <%= password_input f, :password_confirmation, class: "form-control", autocomplete: "off", placeholder: "Confirm password" %>
     <%= error_tag f, :password_confirmation %>
+    </div>
   </div>
 
   <div class="form-group">

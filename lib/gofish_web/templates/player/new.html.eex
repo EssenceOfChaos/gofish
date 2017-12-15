@@ -1,5 +1,19 @@
-<h2>New Player</h2>
 
-<%= render "form.html", Map.put(assigns, :action, player_path(@conn, :create)) %>
 
-<span><%= link "Back", to: player_path(@conn, :index), class: "btn btn-outline-secondary" %></span>
+<div class="row">
+  <div class="col-md-6 offset-md-3">
+    <div class="card">
+      <h2 class="card-header">New Player</h2>
+      <div class="card-body">
+
+
+        <%= render "form.html", Map.put(assigns, :action, player_path(@conn, :create)) %>
+
+        <span><%= link "Back", to: player_path(@conn, :index), class: "btn btn-outline-secondary" %></span>
+      </div>
+      <div class="card-footer text-muted">
+        Already have an account? Login <%= link "here", to: "/login", class: "btn btn-outline-primary btn-sm"%>
+      </div>
+    </div>
+  </div>
+</div>

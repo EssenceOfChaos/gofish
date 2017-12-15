@@ -38,3 +38,30 @@ div#page-header.jumbotron {
 .nav-link .active {
     font-weight: bolder;
 }
+
+.input-group-addon {
+    color: thistle;
+    background-color: #ffffff;
+}
+
+.card-header {
+    text-align: center;
+}
+
+.card-footer {
+    text-align: center;
+}
+
+// center the login button /login page?
+.form-group> {
+    text-align: center;
+    display: block;
+    // display: flex;
+    justify-content: center;
+}
+
+.form-group>button.btn.btn-primary {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+}
