@@ -8,27 +8,22 @@
 </div>
 
 <div class="row">
-  <div class="col-md-6">
-  <i class="fa fa-comments fa-5x" aria-hidden="true"></i>
-<div id="messages"></div>
-<input id="chat-input" type="text"></input>
+  <div class="col-md-5">
+  <div class="lobby-messages">
+  <h3><i class="fa fa-comments" aria-hidden="true"></i>  Lobby Chat</h3>
+  </div>
+   <h2>
+   </h2>
+  
+  <div id="messages"></div>
+  <input id="chat-input" type="text"></input>
 
   
-  </div>
-
-
-</div>
-<div class="row">
-
-  <div class="col-md-8">
-    <h2>Messages</h2>
-    <input type="text" id="NewMessage" placeholder="Type and press enter..." class="form-control">
-    <ul id="MessageList" class="list-unstyled"></ul>
-  </div>
-  <div  class="col-md-4">
-    <h2>Who’s Online</h2>
+  </div><!--col-md-6-->
+  <div  class="col-md-4 offset-md-3">
+    <h3 class="text-center">Who’s Online</h3>
     <ul id="UserList" class="list-unstyled">
-      <li>Loading online users...</li>
+      <li class="text-center"><img src="images/ms-loader.svg" height="30px" width="30px" alt="loading icon"></li>
     </ul>
   </div>
 </div>

@@ -8,10 +8,8 @@ defmodule GofishWeb.LobbyChannelTest do
   setup do
     player = Repo.insert! %Player{username: "tester"}
     token = Phoenix.Token.sign(socket(), "player socket", player.id)
-    {:ok, _, socket} =
-      socket("player_id", %{some: :assign})
-      |> subscribe_and_join(LobbyChannel, "lobby:lobby")
-
+    {:ok, _, socket} = socket("player_id", %{some: :assign})
+    |> subscribe_and_join(LobbyChannel, "lobby:lobby")
     {:ok, socket: socket}
   end
 

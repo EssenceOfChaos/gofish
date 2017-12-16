@@ -18,7 +18,6 @@ defmodule Gofish.Plugs.CurrentPlayer do
   
   defp put_current_player(conn, player) do
     token = Phoenix.Token.sign(conn, "player socket", player.id)
-    
 		conn
 		|> assign(:current_player, player)
 		|> assign(:player_token, token)

@@ -10,6 +10,8 @@
     <!-- hotlink Litera CDN -->
     <!-- <link href="https://maxcdn.bootstrapcdn.com/bootswatch/4.0.0-beta.2/litera/bootstrap.min.css" rel="stylesheet" integrity="sha384-lkgQ9dbCUIEmD/snbBWVxXIIKujePPzSkLp4oc204fayDp2eA0I+xkhPBZUaz6G4" crossorigin="anonymous"> -->
     <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
+    <!-- Google Fonts import -->
+    <link href="https://fonts.googleapis.com/css?family=Lora|Montserrat" rel="stylesheet"> 
   </head>
   <body>
       <%= render "_navbar.html", conn: @conn %>

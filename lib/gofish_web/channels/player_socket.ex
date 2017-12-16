@@ -15,12 +15,14 @@ defmodule GofishWeb.PlayerSocket do
   @max_age 2 * 7 * 24 * 60 * 60
 
   def connect(%{"token" => token}, socket) do
+    IO.inspect token
     case Phoenix.Token.verify(socket, "player socket", token, max_age: @max_age) do
       {:ok, player_id} ->
         player = Gofish.Repo.get!(Player, player_id)
         {:ok, assign(socket, :current_player, player)}
-      {:error, _reason} ->
+        {:error, reason} ->
         :error
+        
     end
 end
 
