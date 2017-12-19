@@ -14,7 +14,7 @@ defmodule GofishWeb.SessionController do
     case Auth.login(session_params, Repo) do
       {:ok, player} ->
         conn
-        |> assign(:current_player, player)
+        |> put_session(:current_player, player.id)
         |> put_session(:player_id, player.id)
         |> put_flash(:info, "Logged in")
         |> redirect(to: "/")

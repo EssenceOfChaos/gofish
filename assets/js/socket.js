@@ -4,24 +4,27 @@
 // and connect at the socket path in "lib/web/endpoint.ex":
 import { Socket } from "phoenix";
 
-let socket = new Socket("/socket", {
-    params: { token: window.playerToken }
-});
-
-function renderOnlinePlayers(presences) {
-    let response = "";
-
-    Presence.list(presences, (id, { metas: [first, ...rest] }) => {
-        let count = rest.length + 1;
-        response += `<br>${id} (count: ${count})</br>`;
-    });
-
-    document.querySelector("main[role=main]").innerHTML = response;
-}
-//
+var token = $('meta[name=channel_token]').attr('content');
+var socket = new Socket('/socket', {params: {token: token}});
 socket.connect();
 
-let presences = {};
+var lobby = socket.channel('lobby:lobby');
+lobby.on('lobby_update', function(response) {
+  console.log(JSON.stringify(response.players));
+});
+lobby.join().receive('ok', function() {
+  console.log('Connected to lobby!');
+});
+
+lobby.on('game_invite', function(response) {
+  console.log('You were invited to join a game by', response.username);
+});
+
+window.invitePlayer = function(username) {
+  lobby.push('game_invite', {username: username});
+};
+
+
 
 // format timestamp
 let formatTimestamp = timestamp => {
@@ -60,13 +63,13 @@ channel
 export default socket;
 
 // WORKING WITH PHOENIX PRESENCE MODULE //
-channel.on("presence_state", state => {
-    presences = Presence.syncState(presences, state);
-    renderOnlinePlayers(presences);
-});
-
-channel.on("presence_diff", diff => {
-    presences = Presence.syncDiff(presences, diff);
-    renderOnlinePlayers(presences);
-});
+// channel.on("presence_state", state => {
+//     presences = Presence.syncState(presences, state);
+//     renderOnlinePlayers(presences);
+// });
+//
+// channel.on("presence_diff", diff => {
+//     presences = Presence.syncDiff(presences, diff);
+//     renderOnlinePlayers(presences);
+// });
 // WORKING WITH PHOENIX PRESENCE MODULE //

@@ -3,32 +3,31 @@ defmodule GofishWeb.PlayerSocket do
   alias Gofish.Accounts.Player
 
   ## Channels
-  # channel "room:*", GofishWeb.RoomChannel
-  channel "lobby:lobby", GofishWeb.LobbyChannel
+  channel "lobby:*", GofishWeb.LobbyChannel, via: [:websocket]
 
   ## Transports
   transport :websocket, Phoenix.Transports.WebSocket,
     timeout: 45_000
   # transport :longpoll, Phoenix.Transports.LongPoll
 
-  
-  @max_age 2 * 7 * 24 * 60 * 60
 
-  def connect(%{"token" => token}, socket) do
-    IO.inspect token
-    case Phoenix.Token.verify(socket, "player socket", token, max_age: @max_age) do
-      {:ok, player_id} ->
-        player = Gofish.Repo.get!(Player, player_id)
-        {:ok, assign(socket, :current_player, player)}
-        {:error, reason} ->
-        :error
-        
-    end
+@max_age 2 * 7 * 24 * 60 * 60
+
+# def connect(_params, socket) do
+#   {:ok, socket}
+# end
+
+def connect(%{"token" => token}, socket) do
+
+  case Phoenix.Token.verify(socket, "player socket", token, max_age: @max_age) do
+    {:ok, player_id} ->
+      {:ok, assign(socket, :player, player_id)}
+    {:error, reason} ->
+      :error
+  end
 end
 
-def connect(_params, _socket), do: :error
-
-def id(socket), do: "players_socket:#{socket.assigns.current_player.id}"
+def id(_socket), do: nil
   # Socket id's are topics that allow you to identify all sockets for a given user:
   #
   #     def id(socket), do: "user_socket:#{socket.assigns.user_id}"

@@ -23,6 +23,6 @@
     <%= link "Login",    to: "/login", class: "btn btn-primary" %>
     <%= link "Register", to: player_path(@conn, :new), class: "btn btn-secondary" %>
   <% end %>
-</ul>
+
   </div>
 </nav>
