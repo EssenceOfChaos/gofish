@@ -15,14 +15,6 @@ console.log(token);
 
 socket.connect();
 
-lobby.join().receive("ok", function() {
-    console.log("Connected to lobby!");
-});
-
-lobby.on("game_invite", function(response) {
-    console.log("You were invited to join a game by", response.username);
-});
-
 function renderOnlineUsers(presences) {
     let response = "";
 
@@ -83,7 +75,6 @@ channel
     .receive("error", resp => {
         console.log("Unable to join", resp);
     });
-export default socket;
 
 channel.on("presence_state", state => {
     presences = Presence.syncState(presences, state);
@@ -94,3 +85,5 @@ channel.on("presence_diff", diff => {
     presences = Presence.syncDiff(presences, diff);
     renderOnlinePlayers(presences);
 });
+
+export default socket;

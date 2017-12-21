@@ -18,10 +18,7 @@ defmodule GofishWeb.PlayerSocket do
 #   {:ok, socket}
 # end
 
-    def connect(%{"channel_token" => token}, socket) do
-      IO.inspect token
-      IO.puts "####   TOKEN-ABOVE   ####   SOCKET-BELOW   ####"
-      IO.inspect socket
+    def connect(%{"token" => token}, socket) do
       case Phoenix.Token.verify(socket, "player auth", token, max_age: 86400) do
         {:ok, player_id} ->
           socket = assign(socket, :player, Repo.get!(Player, player_id))
