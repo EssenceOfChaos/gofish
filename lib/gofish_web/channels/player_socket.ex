@@ -4,7 +4,7 @@ defmodule GofishWeb.PlayerSocket do
   alias Gofish.Repo
 
   ## Channels
-  channel "lobby:*", GofishWeb.LobbyChannel, via: [:websocket]
+  channel "lobby:lobby", GofishWeb.LobbyChannel, via: [:websocket]
 
   ## Transports
   transport :websocket, Phoenix.Transports.WebSocket,
@@ -18,22 +18,18 @@ defmodule GofishWeb.PlayerSocket do
 #   {:ok, socket}
 # end
 
-def connect(%{"token" => token}, socket) do
-  IO.puts "#########TOKEN############"
-  IO.inspect token
-  IO.puts "#########TOKEN############"
-  IO.puts "#########SOCKET############"
-  IO.inspect socket
-  IO.puts "#########SOCKET############"
-  case Phoenix.Token.verify(socket, "player auth", token, max_age: @max_age) do
-    {:ok, player_id} ->
-      player = Gofish.Accounts.get_player!(player_id)
-      {:ok, assign(socket, :current_player, player)}
-    {:error, _} ->
-      :error
-  end
-end
-
+    def connect(%{"channel_token" => token}, socket) do
+      IO.inspect token
+      IO.puts "####   TOKEN-ABOVE   ####   SOCKET-BELOW   ####"
+      IO.inspect socket
+      case Phoenix.Token.verify(socket, "player auth", token, max_age: 86400) do
+        {:ok, player_id} ->
+          socket = assign(socket, :player, Repo.get!(Player, player_id))
+          {:ok, socket}
+        {:error, _} ->
+          :error
+      end
+    end
 ##
 ##
 ##

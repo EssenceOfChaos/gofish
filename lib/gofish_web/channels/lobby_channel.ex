@@ -15,12 +15,11 @@ defmodule GofishWeb.LobbyChannel do
 
   def handle_info(:after_join, socket) do
     push socket, "presence_state", Presence.list(socket)
-    {:ok, _} = Presence.track(socket, socket.assigns.user_id, %{
+    {:ok, _} = Presence.track(socket, socket.assigns.current_player, %{
       online_at: inspect(System.system_time(:seconds))
     })
     {:noreply, socket}
   end
-
 
   # Channels can be used in a request/response fashion
   # by sending replies to requests from the client
@@ -35,13 +34,13 @@ defmodule GofishWeb.LobbyChannel do
     {:noreply, socket}
   end
 
+
+
 ## phoenix channels guide example
   # def handle_in("new_msg", %{"body" => body}, socket) do
   #   broadcast! socket, "new_msg", %{body: body}
   #   {:noreply, socket}
   # end
-
-
 
     # Add authorization logic here as required.
     defp authorized?(_payload) do

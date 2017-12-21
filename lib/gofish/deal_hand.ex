@@ -1,5 +1,9 @@
 defmodule Gofish.DealHand do
 
+  defmodule Card do
+    defstruct [:rank, :suit]
+  end
+
   def create_deck do
     values = [
     "Ace", "Two", "Three",
