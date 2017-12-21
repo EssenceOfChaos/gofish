@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="A remake of the classic card game, 'Go Fish!'">
     <meta name="author" content="Frederick John">
+    <%= tag :meta, name: "channel_token", content: Phoenix.Token.sign(@conn, "player auth", @current_player) %>
+
     <title><%= title() %></title>
     <!-- hotlink Litera CDN -->
     <!-- <link href="https://maxcdn.bootstrapcdn.com/bootswatch/4.0.0-beta.2/litera/bootstrap.min.css" rel="stylesheet" integrity="sha384-lkgQ9dbCUIEmD/snbBWVxXIIKujePPzSkLp4oc204fayDp2eA0I+xkhPBZUaz6G4" crossorigin="anonymous"> -->
@@ -29,7 +31,6 @@
     </div> <!-- /container -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
-    <script>window.playerToken = "<%= assigns[:player_token] %>";</script>
     <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
   </body>
 </html>

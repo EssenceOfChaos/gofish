@@ -1,7 +1,10 @@
 defmodule GofishWeb.PageController do
   use GofishWeb, :controller
 
-  def index(conn, _params) do 
+  def index(conn, _params) do
+    IO.puts "####CONN####"
+    IO.inspect conn
+    IO.puts "####CONN####"
     render conn, "index.html"
   end
 

@@ -32,13 +32,6 @@ defmodule GofishWeb.SessionController do
     |> redirect(to: "/")
   end
 
-  # defp put_current_player(conn, player) do
-  #   token = Phoenix.Token.sign(conn, "player socket", player.id)
-  #   conn
-  #   |> assign(:current_player, player)
-  #   |> put_session(:player_id, player.id)
-  #   |> assign(:player_token, token)
-  # end
 
 
 end

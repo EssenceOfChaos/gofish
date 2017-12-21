@@ -1,6 +1,7 @@
 defmodule GofishWeb.PlayerSocket do
   use Phoenix.Socket
   alias Gofish.Accounts.Player
+  alias Gofish.Repo
 
   ## Channels
   channel "lobby:*", GofishWeb.LobbyChannel, via: [:websocket]
@@ -18,14 +19,25 @@ defmodule GofishWeb.PlayerSocket do
 # end
 
 def connect(%{"token" => token}, socket) do
-
-  case Phoenix.Token.verify(socket, "player socket", token, max_age: @max_age) do
+  IO.puts "#########TOKEN############"
+  IO.inspect token
+  IO.puts "#########TOKEN############"
+  IO.puts "#########SOCKET############"
+  IO.inspect socket
+  IO.puts "#########SOCKET############"
+  case Phoenix.Token.verify(socket, "player auth", token, max_age: @max_age) do
     {:ok, player_id} ->
-      {:ok, assign(socket, :player, player_id)}
-    {:error, reason} ->
+      player = Gofish.Accounts.get_player!(player_id)
+      {:ok, assign(socket, :current_player, player)}
+    {:error, _} ->
       :error
   end
 end
+
+##
+##
+##
+
 
 def id(_socket), do: nil
   # Socket id's are topics that allow you to identify all sockets for a given user:
