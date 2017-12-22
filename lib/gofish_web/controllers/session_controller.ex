@@ -15,6 +15,7 @@ defmodule GofishWeb.SessionController do
       {:ok, player} ->
         conn
         |> put_session(:current_player, player.id)
+        |> assign(:current_player, player)
         |> put_session(:player_id, player.id)
         |> put_flash(:info, "Logged in")
         |> redirect(to: "/")

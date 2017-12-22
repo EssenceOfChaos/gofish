@@ -12,10 +12,10 @@
     <div class="lobby-messages">
       <h3><i class="fa fa-comments" aria-hidden="true"></i>  Lobby Chat</h3>
     </div>
-
-    <div id="messages"></div>
-    <input id="chat-input" type="text"></input>
-
+    <h6>Messages</h6>
+    <div id="messagesContainer"></div>
+    <input type="text" id="chatInput" placeholder="Type and press enter..." class="form-control">
+    <ul id="MessageList" class="list-unstyled"></ul>
 <br />
 
 <br />

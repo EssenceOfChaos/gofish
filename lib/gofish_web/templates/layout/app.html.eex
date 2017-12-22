@@ -7,7 +7,6 @@
     <meta name="description" content="A remake of the classic card game, 'Go Fish!'">
     <meta name="author" content="Frederick John">
     <%= tag :meta, name: "channel_token", content: Phoenix.Token.sign(@conn, "player auth", :player_id) %>
-
     <title><%= title() %></title>
     <!-- hotlink Litera CDN -->
     <!-- <link href="https://maxcdn.bootstrapcdn.com/bootswatch/4.0.0-beta.2/litera/bootstrap.min.css" rel="stylesheet" integrity="sha384-lkgQ9dbCUIEmD/snbBWVxXIIKujePPzSkLp4oc204fayDp2eA0I+xkhPBZUaz6G4" crossorigin="anonymous"> -->

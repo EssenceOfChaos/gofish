@@ -2,8 +2,9 @@
 
 // To use Phoenix channels, the first step is to import Socket
 // and connect at the socket path in "lib/web/endpoint.ex":
-import { Socket } from "phoenix";
+import { Socket, Presence } from "phoenix";
 
+// var player = document.getElementById("current-player").innerText;
 var token = $("meta[name=channel_token]").attr("content");
 var socket = new Socket("/socket", {
     params: {
@@ -23,7 +24,7 @@ function renderOnlineUsers(presences) {
 
     Presence.list(presences, (id, { metas: [first, ...rest] }) => {
         let count = rest.length + 1;
-        response += `<br>${id} (count: ${count})</br>`;
+        response += `<br>${id.username} (count: ${count})</br>`;
     });
 
     document.querySelector("#UserList").innerHTML = response;
@@ -44,7 +45,7 @@ channel.on("presence_diff", diff => {
 
 let chatInput = document.querySelector("#chat-input");
 let messagesContainer = document.querySelector("#messages");
-// listen for "enter" key press
+// // listen for "enter" key press
 chatInput.addEventListener("keypress", event => {
     if (event.keyCode === 13) {
         channel.push("new_msg", {
@@ -53,6 +54,7 @@ chatInput.addEventListener("keypress", event => {
         chatInput.value = "";
     }
 });
+
 // listen for messages and append to the messagesContainer
 channel.on("new_msg", payload => {
     let messageItem = document.createElement("li");
@@ -68,15 +70,5 @@ channel
     .receive("error", resp => {
         console.log("Unable to join", resp);
     });
-
-channel.on("presence_state", state => {
-    presences = Presence.syncState(presences, state);
-    renderOnlinePlayers(presences);
-});
-
-channel.on("presence_diff", diff => {
-    presences = Presence.syncDiff(presences, diff);
-    renderOnlinePlayers(presences);
-});
 
 export default socket;

@@ -4,8 +4,7 @@ defmodule GofishWeb.PlayerSocket do
   alias Gofish.Repo
 
   ## Channels
-  channel "lobby:lobby", GofishWeb.LobbyChannel, via: [:websocket]
-
+  channel "lobby:lobby", GofishWeb.LobbyChannel
   ## Transports
   transport :websocket, Phoenix.Transports.WebSocket,
     timeout: 45_000
@@ -21,14 +20,14 @@ defmodule GofishWeb.PlayerSocket do
   def connect(%{"token" => token}, socket) do
       case Phoenix.Token.verify(socket, "player auth", token, max_age: @max_age) do
         {:ok, player_id} ->
-          socket = assign(socket, :player, Repo.get!(Player, player_id))
-          {:ok, socket}
-        {:error, _} ->
-          :error
+          player = Repo.get!(Player, player_id)
+          {:ok, assign(socket, :current_player, player)}
+          {:error, _reason} ->
+           :error
       end
-      IO.puts "### This code is running! ###"
   end
 
+  def connect(_params, _socket), do: :error
 
   def id(_socket), do: nil
   # Socket id's are topics that allow you to identify all sockets for a given user:

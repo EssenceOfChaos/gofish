@@ -2,20 +2,16 @@ defmodule GofishWeb.LobbyChannel do
   use GofishWeb, :channel
   alias GofishWeb.Presence
   alias Gofish.Repo
- 
 
-  def join("lobby:lobby", payload, socket) do
+
+  def join("lobby:lobby", _params, socket) do
     send(self(), :after_join)
-    if authorized?(payload) do
-      {:ok, socket}
-    else
-      {:error, %{reason: "unauthorized"}}
-    end
+    {:ok, assign(socket, :player_id, :current_player)}
   end
 
   def handle_info(:after_join, socket) do
     push socket, "presence_state", Presence.list(socket)
-    {:ok, _} = Presence.track(socket, socket.assigns.player_id, %{
+    {:ok, _} = Presence.track(socket, socket.assigns.current_player, %{
       online_at: inspect(System.system_time(:seconds))
     })
     {:noreply, socket}

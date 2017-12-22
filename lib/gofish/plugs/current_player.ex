@@ -12,12 +12,12 @@ defmodule Gofish.Plugs.CurrentPlayer do
 		if player = player_id && repo.get(Gofish.Accounts.Player, player_id) do
 			put_current_player(conn, player)
 		else
-			assign(conn, :current_player, nil)	
-		end	
+			assign(conn, :current_player, nil)
+		end
   end
-  
-  defp put_current_player(conn, player) do
-    token = Phoenix.Token.sign(conn, "player socket", player.id)
+
+	defp put_current_player(conn, player) do
+    token = Phoenix.Token.sign(conn, "player auth", player.id)
 		conn
 		|> assign(:current_player, player)
 		|> assign(:player_token, token)

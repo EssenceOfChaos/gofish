@@ -7,7 +7,7 @@ defmodule GofishWeb.Router do
     plug :fetch_flash
     plug :protect_from_forgery
     plug :put_secure_browser_headers
-    plug Gofish.Plugs.CurrentPlayer, repo: Gofish.Repo
+    # plug Gofish.Plugs.CurrentPlayer, repo: Gofish.Repo
   end
 
   pipeline :api do
