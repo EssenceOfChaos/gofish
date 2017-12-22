@@ -10,10 +10,13 @@ var socket = new Socket("/socket", {
         token: token
     }
 });
+
 console.log("READING TOKEN: ");
 console.log(token);
 
 socket.connect();
+
+let presences = {};
 
 function renderOnlineUsers(presences) {
     let response = "";
@@ -24,9 +27,8 @@ function renderOnlineUsers(presences) {
     });
 
     document.querySelector("#UserList").innerHTML = response;
+    // document.querySelector("main[role=main]").innerHTML = response;
 }
-
-let presences = {};
 
 let channel = socket.channel("lobby:lobby", {});
 
@@ -39,15 +41,6 @@ channel.on("presence_diff", diff => {
     presences = Presence.syncDiff(presences, diff);
     renderOnlineUsers(presences);
 });
-
-// format timestamp
-let formatTimestamp = timestamp => {
-    let date = new Date(timestamp);
-    return date.toLocaleTimeString();
-};
-
-//  ## ## ## ## ## ##  //
-// phoenix guide example
 
 let chatInput = document.querySelector("#chat-input");
 let messagesContainer = document.querySelector("#messages");
@@ -70,7 +63,7 @@ channel.on("new_msg", payload => {
 channel
     .join()
     .receive("ok", resp => {
-        console.log("Joined successfully", resp);
+        console.log("Joined Lobby successfully", resp);
     })
     .receive("error", resp => {
         console.log("Unable to join", resp);

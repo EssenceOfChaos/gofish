@@ -21,7 +21,7 @@
     <%= link "Logout", to: session_path(@conn, :delete), method: :delete, class: "btn btn-secondary" %>
     <% else %>
     <%= link "Login",    to: "/login", class: "btn btn-primary" %>
-    <%= link "Register", to: player_path(@conn, :new), class: "btn btn-secondary" %>
+    <%= link "Register", to: player_path(@conn, :new), class: "btn btn-outline-secondary" %>
   <% end %>
 
   </div>

@@ -18,24 +18,22 @@ defmodule GofishWeb.PlayerSocket do
 #   {:ok, socket}
 # end
 
-    def connect(%{"token" => token}, socket) do
-      case Phoenix.Token.verify(socket, "player auth", token, max_age: 86400) do
+  def connect(%{"token" => token}, socket) do
+      case Phoenix.Token.verify(socket, "player auth", token, max_age: @max_age) do
         {:ok, player_id} ->
           socket = assign(socket, :player, Repo.get!(Player, player_id))
           {:ok, socket}
         {:error, _} ->
           :error
       end
-    end
-##
-##
-##
+      IO.puts "### This code is running! ###"
+  end
 
 
-def id(_socket), do: nil
+  def id(_socket), do: nil
   # Socket id's are topics that allow you to identify all sockets for a given user:
   #
-  #     def id(socket), do: "user_socket:#{socket.assigns.user_id}"
+      # def id(socket), do: "player_socket:#{socket.assigns.player_id}"
   #
   # Would allow you to broadcast a "disconnect" event and terminate
   # all active sockets and channels for a given user:

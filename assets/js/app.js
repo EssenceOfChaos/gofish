@@ -20,6 +20,3 @@ import "phoenix_html";
 // paths "./socket" or full ones "web/static/js/socket".
 import { base } from "./base";
 import socket from "./socket";
-
-// PHX PRESENCE //
-import { Socket, Presence } from "phoenix";
