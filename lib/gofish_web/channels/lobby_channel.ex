@@ -6,12 +6,13 @@ defmodule GofishWeb.LobbyChannel do
 
   def join("lobby:lobby", _params, socket) do
     send(self(), :after_join)
-    {:ok, assign(socket, :player_id, :current_player)}
+    {:ok, socket}
   end
 
   def handle_info(:after_join, socket) do
     push socket, "presence_state", Presence.list(socket)
-    {:ok, _} = Presence.track(socket, socket.assigns.current_player, %{
+    {:ok, _} = Presence.track(socket, socket.assigns.current_player.id, %{
+      username: socket.assigns.current_player.username,
       online_at: inspect(System.system_time(:seconds))
     })
     {:noreply, socket}

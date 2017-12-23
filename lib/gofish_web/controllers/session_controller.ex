@@ -19,6 +19,7 @@ defmodule GofishWeb.SessionController do
         |> put_session(:player_id, player.id)
         |> put_flash(:info, "Logged in")
         |> redirect(to: "/")
+        |> configure_session(renew: true)
       :error ->
         conn
         |> put_flash(:error, "Incorrect email or password")

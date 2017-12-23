@@ -1,7 +1,4 @@
 /*jshint esversion: 6 */
-
-// To use Phoenix channels, the first step is to import Socket
-// and connect at the socket path in "lib/web/endpoint.ex":
 import { Socket, Presence } from "phoenix";
 
 // var player = document.getElementById("current-player").innerText;
@@ -9,6 +6,9 @@ var token = $("meta[name=channel_token]").attr("content");
 var socket = new Socket("/socket", {
     params: {
         token: token
+    },
+    logger: (kind, msg, data) => {
+        console.log(`${kind}: ${msg}`, data);
     }
 });
 
@@ -24,7 +24,7 @@ function renderOnlineUsers(presences) {
 
     Presence.list(presences, (id, { metas: [first, ...rest] }) => {
         let count = rest.length + 1;
-        response += `<br>${id.username} (count: ${count})</br>`;
+        response += `<br>${first.username} (count: ${count})</br>`;
     });
 
     document.querySelector("#UserList").innerHTML = response;
