@@ -6,20 +6,15 @@ defmodule Gofish.Plugs.CurrentPlayer do
     Keyword.fetch!(opts, :repo)
   end
 
-
   def call(conn, repo) do
 		player_id = get_session(conn, :player_id)
-		if player = player_id && repo.get(Gofish.Accounts.Player, player_id) do
-			put_current_player(conn, player)
-		else
-			assign(conn, :current_player, nil)
+
+		cond do
+		player = player_id && repo.get(Player, player_id) ->
+			assign(conn, :current_player, player)
+			# conn.assigns.player => player struct
+			true ->
+				assign(conn, :current_player, nil)
 		end
   end
-
-	defp put_current_player(conn, player) do
-		conn
-		|> assign(:current_player, player)
-
-	end
-
 end

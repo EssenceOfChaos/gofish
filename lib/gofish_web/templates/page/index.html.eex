@@ -10,7 +10,7 @@
 <div class="row">
     <div class="col-md-6">
     <div class="lobby-messages">
-      <h3><i class="fa fa-comments" aria-hidden="true"></i>  Lobby Chat</h3>
+      <h3><img src="images/comments.svg" height="30px" width="30px" alt="loading icon">  Lobby Chat</h3>
     </div>
     <h6>Messages</h6>
     <div id="messagesContainer"></div>
@@ -23,8 +23,9 @@
 
   </div><!--col-md-6-->
 
-  <div  class="col-md-3 offset-md-3">
-      <h3 class="text-center">Who’s Online</h3>
+  <div  class="col-md-4 offset-md-2">
+      <h3 class="text-center">Players Online</h3>
+      <div ></div>
       <ul id="UserList" class="list-unstyled">
         <li class="text-center"><img src="images/comments.svg" height="30px" width="30px" alt="loading icon"></li>
       </ul>

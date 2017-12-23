@@ -43,7 +43,7 @@ channel.on("presence_diff", diff => {
     renderOnlineUsers(presences);
 });
 
-let chatInput = document.querySelector("#chat-input");
+let chatInput = document.querySelector("#chatInput");
 let messagesContainer = document.querySelector("#messages");
 // // listen for "enter" key press
 chatInput.addEventListener("keypress", event => {
