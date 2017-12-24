@@ -19,7 +19,7 @@ defmodule Gofish.Accounts.Auth do
 
   ## Helper functions for view
   def current_player(conn) do
-  id = Plug.Conn.get_session(conn, :current_player)
+  id = Plug.Conn.get_session(conn, :player_id)
   if id, do: Gofish.Repo.get(Player, id)
   end
   def logged_in?(conn), do: !!current_player(conn)

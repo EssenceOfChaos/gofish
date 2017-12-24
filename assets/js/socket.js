@@ -1,7 +1,7 @@
 /*jshint esversion: 6 */
 import { Socket, Presence } from "phoenix";
 
-// var player = document.getElementById("current-player").innerText;
+var player = document.getElementById("current_player").innerText;
 var token = $("meta[name=channel_token]").attr("content");
 var socket = new Socket("/socket", {
     params: {
@@ -57,7 +57,7 @@ chatInput.addEventListener("keypress", event => {
 
 // listen for messages and append to the messagesContainer
 channel.on("new_msg", payload => {
-    let messageItem = document.createElement("li");
+    let messageItem = document.createElement("p");
     messageItem.innerText = `[${Date()}] ${payload.body}`;
     messagesContainer.appendChild(messageItem);
 });

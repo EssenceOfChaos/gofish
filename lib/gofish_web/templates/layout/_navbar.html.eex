@@ -17,7 +17,7 @@
   </li>
     </ul>
     <%= if logged_in?(@conn) do %>
-    <span class="badge badge-dark mr-2" id="current-player"><%= current_player(@conn).username %></span>
+    <span class="badge badge-dark mr-2" id="current_player"><%= current_player(@conn).username %></span>
     <%= link "Logout", to: session_path(@conn, :delete), method: :delete, class: "btn btn-secondary" %>
     <% else %>
     <%= link "Login",    to: "/login", class: "btn btn-primary" %>

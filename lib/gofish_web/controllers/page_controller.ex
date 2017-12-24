@@ -2,9 +2,9 @@ defmodule GofishWeb.PageController do
   use GofishWeb, :controller
 
   def index(conn, _params) do
-    IO.puts "####CONN####"
+    IO.puts "#### CONN START ####"
     IO.inspect conn
-    IO.puts "####CONN####"
+    IO.puts "#### CONN END ####"
     render conn, "index.html"
   end
 

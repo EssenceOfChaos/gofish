@@ -10,10 +10,10 @@
 <div class="row">
     <div class="col-md-6">
     <div class="lobby-messages">
-      <h3><img src="images/comments.svg" height="30px" width="30px" alt="loading icon">  Lobby Chat</h3>
+      <h3><img src="images/comments.svg" height="40px" width="40px" alt="loading icon">  Lobby Chat</h3>
     </div>
     <h6>Messages</h6>
-    <div id="messagesContainer"></div>
+    <div id="messages"></div>
     <input type="text" id="chatInput" placeholder="Type and press enter..." class="form-control">
     <ul id="MessageList" class="list-unstyled"></ul>
 <br />
@@ -24,10 +24,11 @@
   </div><!--col-md-6-->
 
   <div  class="col-md-4 offset-md-2">
-      <h3 class="text-center">Players Online</h3>
-      <div ></div>
+      <h3 class="text-center"><i class="fa fa-user " aria-hidden="true"></i> Players Online</h3>
+      <hr>
+      <div></div>
       <ul id="UserList" class="list-unstyled">
-        <li class="text-center"><img src="images/comments.svg" height="30px" width="30px" alt="loading icon"></li>
+        <li class="text-center"><img src="images/hourglass_loader.svg" height="30px" width="30px" alt="loading icon"></li>
       </ul>
   </div>
 </div>
