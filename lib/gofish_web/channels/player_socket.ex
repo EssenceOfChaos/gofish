@@ -3,7 +3,7 @@ defmodule GofishWeb.PlayerSocket do
   alias Gofish.Accounts.Player
   alias Gofish.Repo
 
-  ## Channels
+  ## Channel Routes
   channel "lobby:lobby", GofishWeb.LobbyChannel
   ## Transports
   transport :websocket, Phoenix.Transports.WebSocket,

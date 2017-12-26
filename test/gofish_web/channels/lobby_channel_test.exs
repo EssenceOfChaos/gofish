@@ -6,12 +6,14 @@ defmodule GofishWeb.LobbyChannelTest do
   alias Gofish.Repo
 
   setup do
-    player = Repo.insert! %Player{username: "tester"}
-    token = Phoenix.Token.sign(socket(), "player socket", player.id)
-    {:ok, _, socket} = socket("player_id", %{some: :assign})
+    player = Repo.insert!(%Player{username: "tester", email: "tester@aol.com",
+    rank: 24, password_hash: "abc123"})
+
+    {:ok, _, socket} = socket("", %{current_player: player})
     |> subscribe_and_join(LobbyChannel, "lobby:lobby")
     {:ok, socket: socket}
   end
+
 
   test "ping replies with status ok", %{socket: socket} do
     ref = push socket, "ping", %{"hello" => "there"}

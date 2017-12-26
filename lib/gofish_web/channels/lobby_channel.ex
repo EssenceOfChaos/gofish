@@ -1,7 +1,7 @@
 defmodule GofishWeb.LobbyChannel do
   use GofishWeb, :channel
   alias GofishWeb.Presence
-  alias Gofish.Repo
+
 
 
   def join("lobby:lobby", _params, socket) do
@@ -40,8 +40,8 @@ defmodule GofishWeb.LobbyChannel do
   end
 
     # Add authorization logic here as required.
-    defp authorized?(_payload) do
-      true
-    end
+    # defp authorized?(_payload) do
+    #   true
+    # end
 
 end

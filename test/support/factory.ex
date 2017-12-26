@@ -4,7 +4,6 @@ defmodule Gofish.Factory do
 
   def player_factory do
     %Player{
-
       email: "batman@example.com",
       username: "cooldude17",
       rank: 65,

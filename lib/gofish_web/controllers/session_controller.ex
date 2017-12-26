@@ -29,7 +29,7 @@ defmodule GofishWeb.SessionController do
 
   def delete(conn, _) do
     conn
-    |> delete_session(:current_player)
+    |> delete_session(:player_id)
     |> put_flash(:info, "Logged out")
     |> redirect(to: "/")
   end

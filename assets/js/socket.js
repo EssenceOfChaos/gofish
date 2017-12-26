@@ -1,7 +1,7 @@
 /*jshint esversion: 6 */
 import { Socket, Presence } from "phoenix";
+// Socket
 
-var player = document.getElementById("current_player").innerText;
 var token = $("meta[name=channel_token]").attr("content");
 var socket = new Socket("/socket", {
     params: {
@@ -11,26 +11,32 @@ var socket = new Socket("/socket", {
         console.log(`${kind}: ${msg}`, data);
     }
 });
-
 console.log("READING TOKEN: ");
 console.log(token);
-
 socket.connect();
 
+// Presence
 let presences = {};
+// let formatTimestamp = timestamp => {
+//     let date = new Date(timestamp);
+//     return date.toLocaleTimeString();
+// };
 
 function renderOnlineUsers(presences) {
     let response = "";
 
     Presence.list(presences, (id, { metas: [first, ...rest] }) => {
         let count = rest.length + 1;
-        response += `<br>${first.username} (count: ${count})</br>`;
+        response += `
+        <br><strong>${first.username}</strong> (count: ${count})</br>
+        (Epoch time ${first.online_at} )
+        `;
     });
 
     document.querySelector("#UserList").innerHTML = response;
-    // document.querySelector("main[role=main]").innerHTML = response;
 }
 
+// Channel
 let channel = socket.channel("lobby:lobby", {});
 
 channel.on("presence_state", state => {
@@ -57,8 +63,9 @@ chatInput.addEventListener("keypress", event => {
 
 // listen for messages and append to the messagesContainer
 channel.on("new_msg", payload => {
+    var player = document.getElementById("current_player").innerText;
     let messageItem = document.createElement("p");
-    messageItem.innerText = `[${Date()}] ${payload.body}`;
+    messageItem.innerText = `[${player}] ${payload.body}`;
     messagesContainer.appendChild(messageItem);
 });
 
