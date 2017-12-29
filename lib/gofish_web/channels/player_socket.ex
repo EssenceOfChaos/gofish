@@ -2,9 +2,10 @@ defmodule GofishWeb.PlayerSocket do
   use Phoenix.Socket
   alias Gofish.Accounts.Player
   alias Gofish.Repo
-
+  import Exgravatar
   ## Channel Routes
   channel "lobby:lobby", GofishWeb.LobbyChannel
+  channel "game:*", GofishWeb.GameChannel
   ## Transports
   transport :websocket, Phoenix.Transports.WebSocket,
     timeout: 45_000

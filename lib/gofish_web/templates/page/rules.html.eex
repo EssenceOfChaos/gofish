@@ -1,1 +1,6 @@
-<h4> page controller <strong>rules</strong> action </h4>
+<h4> Rules </h4>
+<hr>
+<ul>
+<li>Each player must create an account before being eligible to play Go Fish </li>
+<%# <li></li> %>
+</ul>

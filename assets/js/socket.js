@@ -11,8 +11,8 @@ var socket = new Socket("/socket", {
         console.log(`${kind}: ${msg}`, data);
     }
 });
-console.log("READING TOKEN: ");
-console.log(token);
+// console.log("READING TOKEN: ");
+// console.log(token);
 socket.connect();
 
 // Presence
@@ -29,7 +29,7 @@ function renderOnlineUsers(presences) {
         let count = rest.length + 1;
         response += `
         <br><strong>${first.username}</strong> (count: ${count})</br>
-        (Epoch time ${first.online_at} )
+        
         `;
     });
 

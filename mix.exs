@@ -15,7 +15,7 @@ defmodule Gofish.Mixfile do
       name: "Gofish",
       source_url: "https://github.com/EssenceOfChaos/gofish",
       homepage_url: "https://gofish-elixir.herokuapp.com",
-      docs: [main: "Gofish", # The main page in the docs
+      docs: [main: "Gofish.Deck", # The main page in the docs
             logo: "assets/static/images/gofishgame.jpg",
             extras: ["README.md"]]
     ]
@@ -53,7 +53,8 @@ defmodule Gofish.Mixfile do
       {:argon2_elixir, "~> 1.2"},
       {:ex_machina, "~> 2.1", only: :test},
       {:ex_doc, "~> 0.16", only: :dev, runtime: false},
-      {:ex_debug_toolbar, "~> 0.4.0"}
+      {:ex_debug_toolbar, "~> 0.4.0"},
+      {:exgravatar, "~> 2.0"},
 
     ]
   end

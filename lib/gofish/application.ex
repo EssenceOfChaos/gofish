@@ -13,8 +13,9 @@ defmodule Gofish.Application do
       # Start the endpoint when the application starts
       supervisor(GofishWeb.Endpoint, []),
       supervisor(GofishWeb.Presence, []),
+      # supervisor(Gofish.Game, []),
       # Start your own worker by calling: Gofish.Worker.start_link(arg1, arg2, arg3)
-      # worker(Gofish.Worker, [arg1, arg2, arg3]),
+      # worker(Gofish.Game, []),
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html

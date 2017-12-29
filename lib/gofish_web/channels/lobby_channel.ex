@@ -39,6 +39,12 @@ defmodule GofishWeb.LobbyChannel do
     {:noreply, socket}
   end
 
+  # def handle_in("new_game", _params, socket) do
+  #   {:reply, {:ok, %{game_id: game_id}}, socket}
+  # end
+
+
+
     # Add authorization logic here as required.
     # defp authorized?(_payload) do
     #   true

@@ -2,11 +2,11 @@
 
   <h1 class="animated zoomIn">Welcome to Go Fish!</h1>
   <br>
-  <h5>Play with friends online <br />or against the computer in arcade mode</h5>
+  <h3>Play with friends online <br />or against the computer in arcade mode</h3>
   <br>
   <br>
 </div>
-
+    <%= if logged_in?(@conn) do %>
 <div class="row">
     <div class="col-md-6">
     <div class="lobby-messages">
@@ -17,12 +17,8 @@
     <input type="text" id="chatInput" placeholder="Type and press enter..." class="form-control">
     <ul id="MessageList" class="list-unstyled"></ul>
 <br />
-
 <br />
-
-
   </div><!--col-md-6-->
-
   <div  class="col-md-4 offset-md-2">
       <h3 class="text-center"><i class="fa fa-user " aria-hidden="true"></i> Players Online</h3>
       <hr>
@@ -32,3 +28,11 @@
       </ul>
   </div>
 </div>
+<% else %>
+<div class="row">
+    <div class="col-md-6">
+Register or login to start playing Go Fish! For help, check out the <%= link "Rules", to: page_path(@conn, :rules)%>
+
+    </div>
+    </div>
+<% end %>

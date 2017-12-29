@@ -5,7 +5,7 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="generator" content="ExDoc v0.18.1">
-    <title>GofishWeb.Router – Gofish v0.0.1</title>
+    <title>GofishWeb.SessionController – Gofish v0.0.1</title>
     <link rel="stylesheet" href="dist/app-c922dbe7ef.css" />
     
     <script src="dist/sidebar_items-8938681991.js"></script>
@@ -70,9 +70,9 @@
 
       <h1>
         <small class="visible-xs">Gofish v0.0.1</small>
-        GofishWeb.Router
+        GofishWeb.SessionController
         
-          <a href="https://github.com/EssenceOfChaos/gofish/blob/master/lib/gofish_web/router.ex#L1" title="View Source" class="view-source" rel="help">
+          <a href="https://github.com/EssenceOfChaos/gofish/blob/master/lib/gofish_web/controllers/session_controller.ex#L1" title="View Source" class="view-source" rel="help">
             <span class="icon-code" aria-hidden="true"></span>
             <span class="sr-only">View Source</span>
           </a>
@@ -99,33 +99,20 @@
     </h2>
     <div class="summary-row">
   <div class="summary-signature">
-    <a href="#api/2">api(conn, _)</a>
+    <a href="#create/2">create(conn, session_params)</a>
   </div>
   
 </div>
 <div class="summary-row">
   <div class="summary-signature">
-    <a href="#browser/2">browser(conn, _)</a>
+    <a href="#delete/2">delete(conn, _)</a>
   </div>
   
 </div>
 <div class="summary-row">
   <div class="summary-signature">
-    <a href="#call/2">call(conn, opts)</a>
+    <a href="#new/2">new(conn, params)</a>
   </div>
-  
-    <div class="summary-synopsis"><p>Callback invoked by Plug on every request</p>
-</div>
-  
-</div>
-<div class="summary-row">
-  <div class="summary-signature">
-    <a href="#init/1">init(opts)</a>
-  </div>
-  
-    <div class="summary-synopsis"><p>Callback required by Plug that initializes the router
-for serving web requests</p>
-</div>
   
 </div>
 
@@ -148,17 +135,17 @@ for serving web requests</p>
             </a>
             Functions
           </h1>
-          <div class="detail" id="api/2">
+          <div class="detail" id="create/2">
   
   
   <div class="detail-header">
-    <a href="#api/2" class="detail-link" title="Link to this function">
+    <a href="#create/2" class="detail-link" title="Link to this function">
       <span class="icon-link" aria-hidden="true"></span>
       <span class="sr-only">Link to this function</span>
     </a>
-    <span class="signature">api(conn, _)</span>
+    <span class="signature">create(conn, session_params)</span>
     
-      <a href="https://github.com/EssenceOfChaos/gofish/blob/master/lib/gofish_web/router.ex#L14" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/EssenceOfChaos/gofish/blob/master/lib/gofish_web/controllers/session_controller.ex#L13" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
        <span class="sr-only">View Source</span>
      </a>
@@ -170,17 +157,17 @@ for serving web requests</p>
     
   </section>
 </div>
-<div class="detail" id="browser/2">
+<div class="detail" id="delete/2">
   
   
   <div class="detail-header">
-    <a href="#browser/2" class="detail-link" title="Link to this function">
+    <a href="#delete/2" class="detail-link" title="Link to this function">
       <span class="icon-link" aria-hidden="true"></span>
       <span class="sr-only">Link to this function</span>
     </a>
-    <span class="signature">browser(conn, _)</span>
+    <span class="signature">delete(conn, _)</span>
     
-      <a href="https://github.com/EssenceOfChaos/gofish/blob/master/lib/gofish_web/router.ex#L4" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/EssenceOfChaos/gofish/blob/master/lib/gofish_web/controllers/session_controller.ex#L30" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
        <span class="sr-only">View Source</span>
      </a>
@@ -192,17 +179,17 @@ for serving web requests</p>
     
   </section>
 </div>
-<div class="detail" id="call/2">
+<div class="detail" id="new/2">
   
   
   <div class="detail-header">
-    <a href="#call/2" class="detail-link" title="Link to this function">
+    <a href="#new/2" class="detail-link" title="Link to this function">
       <span class="icon-link" aria-hidden="true"></span>
       <span class="sr-only">Link to this function</span>
     </a>
-    <span class="signature">call(conn, opts)</span>
+    <span class="signature">new(conn, params)</span>
     
-      <a href="https://github.com/EssenceOfChaos/gofish/blob/master/lib/gofish_web/router.ex#L2" class="view-source" rel="help" title="View Source">
+      <a href="https://github.com/EssenceOfChaos/gofish/blob/master/lib/gofish_web/controllers/session_controller.ex#L9" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
        <span class="sr-only">View Source</span>
      </a>
@@ -211,32 +198,7 @@ for serving web requests</p>
     
   </div>
   <section class="docstring">
-    <p>Callback invoked by Plug on every request.</p>
-
-  </section>
-</div>
-<div class="detail" id="init/1">
-  
-  
-  <div class="detail-header">
-    <a href="#init/1" class="detail-link" title="Link to this function">
-      <span class="icon-link" aria-hidden="true"></span>
-      <span class="sr-only">Link to this function</span>
-    </a>
-    <span class="signature">init(opts)</span>
     
-      <a href="https://github.com/EssenceOfChaos/gofish/blob/master/lib/gofish_web/router.ex#L2" class="view-source" rel="help" title="View Source">
-       <span class="icon-code" aria-hidden="true"></span>
-       <span class="sr-only">View Source</span>
-     </a>
-    
-    
-    
-  </div>
-  <section class="docstring">
-    <p>Callback required by Plug that initializes the router
-for serving web requests.</p>
-
   </section>
 </div>
 
