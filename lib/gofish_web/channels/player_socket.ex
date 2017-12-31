@@ -14,9 +14,6 @@ defmodule GofishWeb.PlayerSocket do
 
 @max_age 2 * 7 * 24 * 60 * 60
 
-# def connect(_params, socket) do
-#   {:ok, socket}
-# end
 
   def connect(%{"token" => token}, socket) do
       case Phoenix.Token.verify(socket, "player auth", token, max_age: @max_age) do
@@ -30,7 +27,9 @@ defmodule GofishWeb.PlayerSocket do
 
   def connect(_params, _socket), do: :error
 
-  def id(_socket), do: nil
+  # def id(_socket), do: nil
+  def id(socket), do: "players_socket:#{socket.assigns.current_player.id}"
+
   # Socket id's are topics that allow you to identify all sockets for a given user:
   #
       # def id(socket), do: "player_socket:#{socket.assigns.player_id}"

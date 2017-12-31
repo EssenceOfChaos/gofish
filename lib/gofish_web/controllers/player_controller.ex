@@ -18,7 +18,9 @@ defmodule GofishWeb.PlayerController do
     case Accounts.create_player(player_params) do
       {:ok, player} ->
         conn
-        |> put_session(:current_player, player.id)
+        |> assign(:current_player, player)
+        |> put_session(:player_id, player.id)
+        # |> put_session(:current_player, player.id)
         |> put_flash(:info, "Player created successfully.")
         |> redirect(to: player_path(conn, :show, player))
       {:error, %Ecto.Changeset{} = changeset} ->

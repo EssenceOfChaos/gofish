@@ -3,11 +3,15 @@ defmodule GofishWeb.GameChannelTest do
 
   alias GofishWeb.GameChannel
 
-  setup do
-    {:ok, _, socket} =
-      socket("user_id", %{some: :assign})
-      |> subscribe_and_join(GameChannel, "game:lobby")
+  alias Gofish.Accounts.Player
+  alias Gofish.Repo
 
+  setup do
+    player = Repo.insert!(%Player{username: "tester", email: "tester@aol.com",
+    rank: 24, password_hash: "abc123"})
+
+    {:ok, _, socket} = socket("", %{current_player: player})
+    |> subscribe_and_join(GameChannel, "game:lobby")
     {:ok, socket: socket}
   end
 

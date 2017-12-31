@@ -1,0 +1,13 @@
+<h2>Show Game</h2>
+
+<ul>
+
+  <li>
+    <strong>Winner:</strong>
+    <%= @game.winner %>
+  </li>
+
+</ul>
+
+<span><%= link "Edit", to: game_path(@conn, :edit, @game) %></span>
+<span><%= link "Back", to: game_path(@conn, :index) %></span>

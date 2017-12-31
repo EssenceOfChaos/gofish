@@ -55,6 +55,7 @@ defmodule Gofish.Mixfile do
       {:ex_doc, "~> 0.16", only: :dev, runtime: false},
       {:ex_debug_toolbar, "~> 0.4.0"},
       {:exgravatar, "~> 2.0"},
+      {:credo, "~> 0.8", only: [:dev, :test], runtime: false}
 
     ]
   end

@@ -1,14 +1,9 @@
 defmodule GofishWeb.GameChannel do
   use GofishWeb, :channel
+  @moduledoc """
+  This module contains the Game Channel
+  """
 
-  def join("game:lobby", payload, socket) do
-    if authorized?(payload) do
-      {:ok, socket}
-    else
-      {:error, %{reason: "unauthorized"}}
-    end
-  end
-  
   def join("game:" <> game_id, _message, socket) do
     player_id = socket.assigns.player_id
 
@@ -19,6 +14,8 @@ defmodule GofishWeb.GameChannel do
         {:error, %{reason: reason}}
     end
   end
+
+
 
   # Channels can be used in a request/response fashion
   # by sending replies to requests from the client
@@ -33,8 +30,5 @@ defmodule GofishWeb.GameChannel do
     {:noreply, socket}
   end
 
-  # Add authorization logic here as required.
-  defp authorized?(_payload) do
-    true
-  end
+
 end

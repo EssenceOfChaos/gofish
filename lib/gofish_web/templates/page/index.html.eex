@@ -6,26 +6,40 @@
   <br>
   <br>
 </div>
+
+
+
+
+
+
     <%= if logged_in?(@conn) do %>
 <div class="row">
-    <div class="col-md-6">
-    <div class="lobby-messages">
-      <h3 class="text-center"><img src="images/comments.svg" height="40px" width="40px" alt="loading icon">  Lobby Chat</h3>
-    </div>
-    <h6>Messages</h6>
-    <div id="messages"></div>
-    <input type="text" id="chatInput" placeholder="Type and press enter..." class="form-control">
-    <ul id="MessageList" class="list-unstyled"></ul>
+    <div class="col-md-8">
+<div class="card border-info mb-3" >
+  <div class="card-header"><h5><img src="images/comments.svg" height="30px" width="30px" alt="loading icon">  Lobby Chat</h5></div>
+  <div class="card-body text-info">
+
+    <ul id="MessageList" class="list-unstyled" style="height: 400px; overflow-y: auto; padding: 10px"></ul>
+    <div class="card-footer text-muted">
+   <input type="text" id="chatInput" placeholder="Type and press enter..." class="form-control">
+  </div>
+  </div>
+</div>  
 <br />
 <br />
-  </div><!--col-md-6-->
-  <div  class="col-md-4 offset-md-2">
-      <h3 class="text-center"><i class="fa fa-user " aria-hidden="true"></i> Players Online</h3>
-      <hr>
-      <div></div>
-      <ul id="UserList" class="list-unstyled">
+  </div><!--col-md-8-->
+
+
+  <div  class="col-md-4">
+      
+    <div class="card border-warning mb-3">
+  <div class="card-header"><h5 class="text-center"><i class="fa fa-user " aria-hidden="true"></i> Players Online</h5></div>
+  <div class="card-body text-warning">
+    <ul id="UserList" class="list-unstyled">
         <li class="text-center"><img src="images/hourglass_loader.svg" height="30px" width="30px" alt="loading icon"></li>
       </ul>
+  </div>
+</div>
   </div>
 </div>
 <% else %>
@@ -36,3 +50,4 @@ Register or login to start playing Go Fish! For help, check out the <%= link "Ru
     </div>
     </div>
 <% end %>
+

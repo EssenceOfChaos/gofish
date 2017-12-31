@@ -3,6 +3,10 @@
 // font-family: 'Lora', serif;
 // font-family: 'Montserrat', sans-serif;
 //  //
+body {
+    font-family: "Montserrat", sans-serif;
+}
+
 
 /* Phoenix flash messages */
 
@@ -78,10 +82,13 @@ div#page-header.jumbotron {
     background-color: azure;
 }
 
+.col-md-2,
 .col-md-3,
 .col-md-4,
 .col-md-5,
-.col-md-6 {
+.col-md-6,
+.col-md-7,
+.col-md-8 {
     border: 1px dotted brown;
 }
 

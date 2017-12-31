@@ -1,26 +1,22 @@
 /*jshint esversion: 6 */
 import { Socket, Presence } from "phoenix";
 // Socket
-
-var token = $("meta[name=channel_token]").attr("content");
-var socket = new Socket("/socket", {
+let player = document.getElementById("current_player").innerText;
+let token = $("meta[name=channel_token]").attr("content");
+let socket = new Socket("/socket", {
     params: {
-        token: token
+        token: token,
+        player: player
     },
     logger: (kind, msg, data) => {
         console.log(`${kind}: ${msg}`, data);
     }
 });
-// console.log("READING TOKEN: ");
-// console.log(token);
+
 socket.connect();
 
 // Presence
 let presences = {};
-// let formatTimestamp = timestamp => {
-//     let date = new Date(timestamp);
-//     return date.toLocaleTimeString();
-// };
 
 function renderOnlineUsers(presences) {
     let response = "";
@@ -28,8 +24,7 @@ function renderOnlineUsers(presences) {
     Presence.list(presences, (id, { metas: [first, ...rest] }) => {
         let count = rest.length + 1;
         response += `
-        <br><strong>${first.username}</strong> (count: ${count})</br>
-        
+        <br><strong>${first.username}</strong> (count: ${count})       
         `;
     });
 
@@ -50,7 +45,7 @@ channel.on("presence_diff", diff => {
 });
 
 let chatInput = document.querySelector("#chatInput");
-let messagesContainer = document.querySelector("#messages");
+let messagesContainer = document.querySelector("#MessageList");
 // // listen for "enter" key press
 chatInput.addEventListener("keypress", event => {
     if (event.keyCode === 13) {
@@ -63,9 +58,8 @@ chatInput.addEventListener("keypress", event => {
 
 // listen for messages and append to the messagesContainer
 channel.on("new_msg", payload => {
-    var player = document.getElementById("current_player").innerText;
     let messageItem = document.createElement("p");
-    messageItem.innerText = `[${player}] ${payload.body}`;
+    messageItem.innerText = ` [${payload.player}] ${payload.body}`;
     messagesContainer.appendChild(messageItem);
 });
 
@@ -78,4 +72,12 @@ channel
         console.log("Unable to join", resp);
     });
 
+//
+// lobby.on("game_invite", function(response) {
+//     console.log("You were invited to join a game by", response.username);
+// });
+// window.invitePlayer = function(username) {
+//     lobby.push("game_invite", { username: username });
+// };
+//
 export default socket;

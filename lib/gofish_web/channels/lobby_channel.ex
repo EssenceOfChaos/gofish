@@ -13,10 +13,22 @@ defmodule GofishWeb.LobbyChannel do
     push socket, "presence_state", Presence.list(socket)
     {:ok, _} = Presence.track(socket, socket.assigns.current_player.id, %{
       username: socket.assigns.current_player.username,
-      online_at: inspect(System.system_time(:seconds))
+      online_at: :os.system_time(:seconds)
     })
+    push socket, "presence_state", Presence.list(socket)
     {:noreply, socket}
   end
+
+
+
+  def handle_in("new_game", _params, socket) do
+    game = Gofish.GamePlay.create_game
+    game_id = game.id
+    GameServer.start_game(game_id)
+    {:reply, {:ok, %{game_id: game_id}}, socket}
+  end
+
+
 
   # Channels can be used in a request/response fashion
   # by sending replies to requests from the client
@@ -35,13 +47,31 @@ defmodule GofishWeb.LobbyChannel do
 
 ## phoenix channels guide example
   def handle_in("new_msg", %{"body" => body}, socket) do
-    broadcast! socket, "new_msg", %{body: body}
+    broadcast! socket, "new_msg", %{
+      player: socket.assigns.current_player.username,
+      body: body,
+      timestamp: :os.system_time(:milli_seconds)
+    }
     {:noreply, socket}
   end
 
   # def handle_in("new_game", _params, socket) do
   #   {:reply, {:ok, %{game_id: game_id}}, socket}
   # end
+
+  def handle_in("game_invite", %{"username" => username}, socket) do
+    data = %{"username" => username, "sender" => socket.assigns.current_player.username }
+    broadcast! socket, "game_invite", data
+    {:noreply, socket}
+  end
+
+  intercept ["game_invite"]
+def handle_out("game_invite", %{"username" => username, "sender" => sender}, socket) do
+  if socket.assigns.current_player.username == username do
+    push socket, "game_invite", %{ username: sender}
+  end
+  {:noreply, socket}
+end
 
 
 
