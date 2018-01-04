@@ -22,6 +22,15 @@ defmodule Gofish.GamePlay do
   end
 
   @doc """
+  Starts a new game
+
+  """
+  def new_game do
+    %Game{status: "initializing"}
+    |> Repo.insert()
+  end
+
+  @doc """
   Gets a single game.
 
   Raises `Ecto.NoResultsError` if the Game does not exist.
@@ -101,4 +110,5 @@ defmodule Gofish.GamePlay do
   def change_game(%Game{} = game) do
     Game.changeset(game, %{})
   end
+  
 end

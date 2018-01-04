@@ -1,6 +1,6 @@
 defmodule Gofish.Deck do
 
-@moduledoc """
+      @moduledoc """
   Provides a Deck context to hold the Card struct. The Deck module performs common operations
   such as creating a new deck and shuffling the cards.
 

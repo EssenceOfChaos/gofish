@@ -1,11 +1,14 @@
 defmodule GofishWeb.GameChannel do
   use GofishWeb, :channel
+  alias Gofish.GamePlay.Game
+
+
   @moduledoc """
   This module contains the Game Channel
   """
 
   def join("game:" <> game_id, _message, socket) do
-    player_id = socket.assigns.player_id
+    player_id = socket.assigns.current_player.id
 
     case Game.join(game_id, player_id, socket.channel_pid) do
       {:ok, _pid} ->
@@ -15,6 +18,10 @@ defmodule GofishWeb.GameChannel do
     end
   end
 
+
+# def handle_in("new_move", %{"card" => card}, socket) do
+#
+# end
 
 
   # Channels can be used in a request/response fashion

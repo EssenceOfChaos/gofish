@@ -3,8 +3,8 @@ defmodule GofishWeb.GameControllerTest do
 
   alias Gofish.GamePlay
 
-  @create_attrs %{winner: "some winner"}
-  @update_attrs %{winner: "some updated winner"}
+  @create_attrs %{winner: 2}
+  @update_attrs %{winner: 1}
   @invalid_attrs %{winner: nil}
 
   def fixture(:game) do

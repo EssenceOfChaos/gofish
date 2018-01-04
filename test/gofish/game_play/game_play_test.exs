@@ -6,8 +6,8 @@ defmodule Gofish.GamePlayTest do
   describe "games" do
     alias Gofish.GamePlay.Game
 
-    @valid_attrs %{winner: "some winner"}
-    @update_attrs %{winner: "some updated winner"}
+    @valid_attrs %{winner: 2}
+    @update_attrs %{winner: 1}
     @invalid_attrs %{winner: nil}
 
     def game_fixture(attrs \\ %{}) do
@@ -31,7 +31,7 @@ defmodule Gofish.GamePlayTest do
 
     test "create_game/1 with valid data creates a game" do
       assert {:ok, %Game{} = game} = GamePlay.create_game(@valid_attrs)
-      assert game.winner == "some winner"
+      assert game.winner == 2
     end
 
     test "create_game/1 with invalid data returns error changeset" do
@@ -42,7 +42,7 @@ defmodule Gofish.GamePlayTest do
       game = game_fixture()
       assert {:ok, game} = GamePlay.update_game(game, @update_attrs)
       assert %Game{} = game
-      assert game.winner == "some updated winner"
+      assert game.winner == 1
     end
 
     test "update_game/2 with invalid data returns error changeset" do

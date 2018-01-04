@@ -1,7 +1,8 @@
 defmodule GofishWeb.LobbyChannel do
   use GofishWeb, :channel
   alias GofishWeb.Presence
-
+  alias Gofish.GamePlay
+  alias Gofish.GamePlay.GameServer
 
 
   def join("lobby:lobby", _params, socket) do
@@ -22,7 +23,7 @@ defmodule GofishWeb.LobbyChannel do
 
 
   def handle_in("new_game", _params, socket) do
-    game = Gofish.GamePlay.create_game
+    game = GamePlay.create_game
     game_id = game.id
     GameServer.start_game(game_id)
     {:reply, {:ok, %{game_id: game_id}}, socket}

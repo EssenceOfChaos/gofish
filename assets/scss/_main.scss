@@ -7,6 +7,15 @@ body {
     font-family: "Montserrat", sans-serif;
 }
 
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: "Lora", serif;
+}
+
 
 /* Phoenix flash messages */
 
@@ -77,26 +86,42 @@ div#page-header.jumbotron {
 //
 //
 //
+
+/* Add a green text color and a checkmark when the requirements are right */
+
+.valid {
+    color: green;
+}
+
+.valid:before {
+    position: relative;
+    left: -35px;
+    content: "✔";
+}
+
+
+/* Add a red text color and an "x" when the requirements are wrong */
+
+.invalid {
+    color: red;
+}
+
+.invalid:before {
+    position: relative;
+    left: -35px;
+    content: "✖";
+}
+
 // ---###### Development styles for visual spacing & grid layout BELOW #########-- //
-.row {
-    background-color: azure;
-}
-
-.col-md-2,
-.col-md-3,
-.col-md-4,
-.col-md-5,
-.col-md-6,
-.col-md-7,
-.col-md-8 {
-    border: 1px dotted brown;
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-    font-family: "Lora", serif;
-}
+// .row {
+//     background-color: azure;
+// }
+// .col-md-2,
+// .col-md-3,
+// .col-md-4,
+// .col-md-5,
+// .col-md-6,
+// .col-md-7,
+// .col-md-8 {
+//     border: 1px dotted brown;
+// }

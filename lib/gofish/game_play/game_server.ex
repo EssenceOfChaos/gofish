@@ -1,43 +1,61 @@
 defmodule Gofish.GamePlay.GameServer do
   use GenServer
   alias Gofish.GamePlay.Game
+
     @moduledoc """
   This module contains the game logic and maintains the game state
   """
 
-  def start(id) do
-    GenServer.start_link(__MODULE__, id, name: ref(id))
-   end
-# Generates global reference
-  defp ref(id), do: {:global, {:game, id}}
 
-
-
-  def join(pid, player_1) do
-    GenServer.call(pid, {:join, player_1})
+  def start(game_id) do
+    GenServer.start_link(__MODULE__, :ok, name: via_tuple(game_id))
   end
 
-  def play(pid, index, player_id) do
-    GenServer.call(pid, {:play, index, player_id})
+  defp via_tuple(game_id), do: {:via, Registry, {Registry.Game, game_id}}
+
+  def init do
+
+  end
+#
+
+
+  # Client
+
+  def push(pid, item) do
+    GenServer.cast(pid, {:push, item})
   end
 
-  def init(_opts) do
-    {:ok, %Game{}}
+  def pop(pid) do
+    GenServer.call(pid, :pop)
   end
 
-  def handle_call({:join, player_1}, _from, state) do
-    case Game.join_user(state, player_1) do
-      %Game{} = state -> {:reply, {:ok, state}, state}
-      other           -> {:reply, other, state}
-    end
+  ## Server Callbacks
+
+  def init(:ok) do
+    {:ok, %Game{
+      status: "initializing",
+      }}
+  end
+
+  def handle_call(:pop, _from, [h | t]) do
+    {:reply, h, t}
+  end
+
+  def handle_call(request, from, state) do
+    # Call the default implementation from GenServer
+    super(request, from, state)
+  end
+
+  def handle_cast({:push, item}, state) do
+    {:noreply, [item | state]}
+  end
+
+  def handle_cast(request, state) do
+    super(request, state)
   end
 
 
 
-  def start_game(game_id) do
-    
-  end
 
 
-  
 end

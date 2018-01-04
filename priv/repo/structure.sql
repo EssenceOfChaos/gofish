@@ -44,7 +44,8 @@ CREATE TABLE games (
     player_1 bigint,
     player_2 bigint,
     inserted_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    status character varying(255)
 );
 
 
@@ -183,5 +184,5 @@ ALTER TABLE ONLY games
 -- PostgreSQL database dump complete
 --
 
-INSERT INTO "schema_migrations" (version) VALUES (20171209000014), (20171229054711);
+INSERT INTO "schema_migrations" (version) VALUES (20171209000014), (20171229054711), (20180104180159);
 

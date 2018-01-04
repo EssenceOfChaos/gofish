@@ -6,12 +6,6 @@
   <br>
   <br>
 </div>
-
-
-
-
-
-
     <%= if logged_in?(@conn) do %>
 <div class="row">
     <div class="col-md-8">
