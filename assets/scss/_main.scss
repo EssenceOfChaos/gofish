@@ -4,7 +4,7 @@
 // font-family: 'Montserrat', sans-serif;
 //  //
 body {
-    font-family: "Montserrat", sans-serif;
+  font-family: "Montserrat", sans-serif;
 }
 
 h1,
@@ -13,14 +13,14 @@ h3,
 h4,
 h5,
 h6 {
-    font-family: "Lora", serif;
+  font-family: "Lora", serif;
 }
 
 
 /* Phoenix flash messages */
 
 .alert:empty {
-    display: none;
+  display: none;
 }
 
 // form errors
@@ -40,16 +40,16 @@ h6 {
 // }
 div#page-header.jumbotron {
     text-align: center;
-    color: white;
-    background-image: url(https://i.imgur.com/BFq48XQ.jpg);
-    -webkit-background-size: cover;
-    position: relative;
-    background-size: cover;
-    overflow: hidden;
-    height: 100%;
-    -moz-border-radius: 25px;
-    -webkit-border-radius: 25px;
-    border-radius: 25px;
+//     color: white;
+//     background-image: url(https://i.imgur.com/BFq48XQ.jpg);
+//     -webkit-background-size: cover;
+//     position: relative;
+//     background-size: cover;
+//     overflow: hidden;
+//     height: 100%;
+//     -moz-border-radius: 25px;
+//     -webkit-border-radius: 25px;
+//     border-radius: 25px;
 }
 
 .nav-link .active {

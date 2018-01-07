@@ -18,13 +18,18 @@ socket.connect();
 // Presence
 let presences = {};
 
+
+
+
 function renderOnlineUsers(presences) {
     let response = "";
 
     Presence.list(presences, (id, { metas: [first, ...rest] }) => {
         let count = rest.length + 1;
         response += `
-        <br><strong>${first.username}</strong> (count: ${count})       
+        <br><strong>${first.username}</strong> (count: ${count})
+
+
         `;
     });
 
@@ -44,6 +49,9 @@ channel.on("presence_diff", diff => {
     renderOnlineUsers(presences);
 });
 
+//
+//
+//
 let chatInput = document.querySelector("#chatInput");
 let messagesContainer = document.querySelector("#MessageList");
 // // listen for "enter" key press
@@ -59,7 +67,7 @@ chatInput.addEventListener("keypress", event => {
 // listen for messages and append to the messagesContainer
 channel.on("new_msg", payload => {
     let messageItem = document.createElement("p");
-    messageItem.innerText = ` [${payload.player}] ${payload.body}`;
+    messageItem.innerText = `[${payload.player}]  ${payload.body}`;
     messagesContainer.appendChild(messageItem);
 });
 
@@ -73,11 +81,11 @@ channel
     });
 
 //
-// lobby.on("game_invite", function(response) {
-//     console.log("You were invited to join a game by", response.username);
-// });
-// window.invitePlayer = function(username) {
-//     lobby.push("game_invite", { username: username });
-// };
-//
+lobby.on("game_invite", function(response) {
+    console.log("You were invited to join a game by", response.username);
+});
+window.invitePlayer = function(username) {
+    lobby.push("game_invite", { username: username });
+};
+
 export default socket;

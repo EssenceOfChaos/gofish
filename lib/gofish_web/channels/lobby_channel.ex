@@ -46,7 +46,6 @@ defmodule GofishWeb.LobbyChannel do
 
 
 
-## phoenix channels guide example
   def handle_in("new_msg", %{"body" => body}, socket) do
     broadcast! socket, "new_msg", %{
       player: socket.assigns.current_player.username,
@@ -65,6 +64,7 @@ defmodule GofishWeb.LobbyChannel do
     broadcast! socket, "game_invite", data
     {:noreply, socket}
   end
+
 
   intercept ["game_invite"]
 def handle_out("game_invite", %{"username" => username, "sender" => sender}, socket) do
